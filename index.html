@@ -3,80 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta Automática de IP</title>
+    <title>InfoIP - Seu Dados de Conexão</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom right, #4CAF50, #2E7D32);
-            color: #fff;
-            text-align: center;
-            margin: 0;
-            padding: 0;
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #b91c1c 100%);
         }
-        header {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        header h1 {
-            margin: 0;
+        .ip-display {
+            font-family: 'Courier New', monospace;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid #b91c1c;
         }
-        .container {
-            margin: 50px auto;
-            padding: 20px;
-            max-width: 400px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-        }
-        .result {
-            margin-top: 20px;
-            padding: 10px;
-            font-size: 18px;
-            border-radius: 5px;
-        }
-        .authorized {
-            background-color: #388E3C;
-        }
-        .unauthorized {
-            background-color: #D32F2F;
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
     </style>
 </head>
-<body>
-    <header>
-        <h1>Consulta Automática de IP</h1>
-        <p>Seu IP será validado automaticamente</p>
-    </header>
-    <div class="container">
-        <div id="userIP" class="result"></div>
-        <div id="result" class="result"></div>
+<body class="min-h-screen gradient-bg grid-pattern text-white overflow-x-hidden">
+    <div class="container mx-auto px-4 py-12">
+        <!-- Header -->
+        <header class="flex flex-col items-center mb-12">
+            <div class="flex items-center justify-center bg-white rounded-full p-3 shadow-lg mb-4">
+                <i class="fas fa-globe text-4xl text-blue-900"></i>
+                <i class="fas fa-map-marker-alt text-4xl text-red-600 ml-2"></i>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-center mb-2">Info<span class="text-red-400">IP</span></h1>
+            <p class="text-lg text-blue-100 max-w-2xl text-center">Sua ferramenta completa para análise de dados de conexão na internet</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- IP Info Card -->
+            <div class="lg:col-span-2 bg-white bg-opacity-10 rounded-xl p-6 shadow-lg backdrop-filter backdrop-blur-lg border border-white border-opacity-20 transition duration-300">
+                <div class="flex items-center mb-6">
+                    <div class="bg-red-500 p-2 rounded-lg mr-4">
+                        <i class="fas fa-network-wired text-white text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold">Seus Dados de Conexão</h2>
+                </div>
+                
+                <div id="userIP" class="ip-display p-6 rounded-lg overflow-auto max-h-96"></div>
+                
+            </div>
+            
+            <!-- Side Cards -->
+            <div class="space-y-6">
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="mt-16 pt-8 border-t border-white border-opacity-20 pb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">InfoIP</h4>
+                    <p class="text-blue-100">Ferramenta profissional para análise de dados de conexão e segurança na internet.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-100 hover:text-red-300 transition">Política de Privacidade</a></li>
+                        <li><a href="#" class="text-blue-100 hover:text-red-300 transition">Termos de Serviço</a></li>
+                        <li><a href="#" class="text-blue-100 hover:text-red-300 transition">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Redes Sociais</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-white bg-opacity-10 hover:bg-opacity-20 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-white bg-opacity-10 hover:bg-opacity-20 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-white bg-opacity-10 hover:bg-opacity-20 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-blue-100 text-sm">
+                <p>© 2023 InfoIP. Todos os direitos reservados.</p>
+            </div>
+        </footer>
     </div>
 
     <script>
-        const authorizedIP = "192.828272173";
+        /**
+         * Função para formatar objeto com indentação estilo JSON legível
+         * @param {Object} obj - Objeto a ser formatado
+         * @param {number} indent - Nível de indentação
+         * @returns {string} String formatada
+         */
+        function formatObject(obj, indent = 0) {
+            const indentStr = '  '.repeat(indent);
+            let str = '';
+            for (const key in obj) {
+                if (Object.hasOwnProperty.call(obj, key)) {
+                    const val = obj[key];
+                    if (val && typeof val === 'object' && !Array.isArray(val)) {
+                        str += `<span class="text-blue-300">${indentStr}${key}</span>: {\n`;
+                        str += formatObject(val, indent + 1);
+                        str += `${indentStr}}\n`;
+                    } else {
+                        const displayVal = typeof val === 'string' ? `"<span class="text-green-300">${val}</span>"` : `<span class="text-yellow-300">${val}</span>`;
+                        str += `<span class="text-blue-300">${indentStr}${key}</span>: ${displayVal}\n`;
+                    }
+                }
+            }
+            return str;
+        }
 
-        fetch("https://api64.ipify.org?format=json")
+        fetch("https://ipwho.is/")
             .then(response => response.json())
             .then(data => {
-                const userIP = data.ip;
-                const userIPDiv = document.getElementById("userIP");
-                const resultDiv = document.getElementById("result");
-
-                // Exibe o IP do usuário
-                userIPDiv.textContent = `Seu IP: ${userIP}`;
-
-                // Valida o IP
-                if (userIP === authorizedIP) {
-                    resultDiv.textContent = "O IP está autorizado!";
-                    resultDiv.className = "result authorized";
-                } else {
-                    resultDiv.textContent = "O IP fornecido não está autorizado!";
-                    resultDiv.className = "result unauthorized";
-                }
+                document.getElementById("userIP").innerHTML = formatObject(data);
             })
             .catch(error => {
-                console.error("Erro ao obter o IP:", error);
-                document.getElementById("userIP").textContent = "Não foi possível obter seu IP.";
+                document.getElementById("userIP").textContent = "Erro ao obter dados da API.";
+                console.error("Erro na requisição:", error);
             });
     </script>
 </body>
