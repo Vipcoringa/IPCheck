@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta Automática de IP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #4CAF50, #2E7D32);
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .container {
+            margin: 50px auto;
+            padding: 20px;
+            max-width: 400px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        .authorized {
+            background-color: #388E3C;
+        }
+        .unauthorized {
+            background-color: #D32F2F;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Consulta Automática de IP</h1>
+        <p>Seu IP será validado automaticamente</p>
+    </header>
+    <div class="container">
+        <div id="userIP" class="result"></div>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        const authorizedIP = "192.828272173";
+
+        fetch("https://api64.ipify.org?format=json")
+            .then(response => response.json())
+            .then(data => {
+                const userIP = data.ip;
+                const userIPDiv = document.getElementById("userIP");
+                const resultDiv = document.getElementById("result");
+
+                // Exibe o IP do usuário
+                userIPDiv.textContent = `Seu IP: ${userIP}`;
+
+                // Valida o IP
+                if (userIP === authorizedIP) {
+                    resultDiv.textContent = "O IP está autorizado!";
+                    resultDiv.className = "result authorized";
+                } else {
+                    resultDiv.textContent = "O IP fornecido não está autorizado!";
+                    resultDiv.className = "result unauthorized";
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao obter o IP:", error);
+                document.getElementById("userIP").textContent = "Não foi possível obter seu IP.";
+            });
+    </script>
+</body>
+</html>
